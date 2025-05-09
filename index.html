@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Replay Animation on Click</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 2em;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.5s ease-in-out;
+    }
+
+    h1.animated {
+      opacity: 1;
+      transform: translateY(0);
+      color: #e91e63;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #6200ea;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3700b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="myText">Welcome, ChocoQueen 👑</h1>
+  <button id="animateBtn">Animate Again</button>
+
+  <script>
+    const text = document.getElementById("myText");
+    const button = document.getElementById("animateBtn");
+
+    button.addEventListener("click", () => {
+      // Remove class first to restart animation
+      text.classList.remove("animated");
+
+      // Force reflow (to restart transition)
+      void text.offsetWidth;
+
+      // Re-add the class
+      text.classList.add("animated");
+    });
+  </script>
+</body>
+</html>
